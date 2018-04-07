@@ -24,11 +24,11 @@
   <!-- 导航-->
   <div class="nav">
     <ul>
-      <li><a href="user.html"><i class="glyphicon glyphicon-user"></i><span>用户管理</span></a></li>
+      <li><a href="user.html" class="current"><i class="glyphicon glyphicon-user"></i><span>用户管理</span></a></li>
       <li>
         <a href="javascript:;" class="category"><i class="glyphicon glyphicon-list"></i><span>分类管理</span></a>
-        <div class="child">
-          <a href="first.html" class="current">一级分类</a>
+        <div class="child" style="display: none;">
+          <a href="first.html">一级分类</a>
           <a href="second.html">二级分类</a>
         </div>
       </li>
@@ -51,23 +51,23 @@
     <!-- 路径导航 -->
     <ol class="breadcrumb">
       <li><a href="index.html">管理系统</a></li>
-      <li class="active">分类管理</li>
-      <li class="active">一级分类</li>
+      <li class="active">用户管理</li>
     </ol>
 
     <div class="lt_content">
 
-      <button class="btn btn-default mb_20" id="addBtn">添加分类</button>
-
       <table class="table table-bordered table-hover">
         <thead>
-        <tr>
-          <th width="20%">序号</th>
-          <th width="80%">一级分类名</th>
-        </tr>
+          <tr>
+            <th>序号</th>
+            <th>用户名</th>
+            <th>手机号</th>
+            <th>状态</th>
+            <th>操作</th>
+          </tr>
         </thead>
         <tbody>
-          <!-- 刨个大坑 -->
+          <!-- 刨个坑 -->
         </tbody>
       </table>
 
@@ -77,34 +77,28 @@
       </div>
 
     </div>
-
   </div>
 </div>
 
-<!-- 添加分类的模态框 -->
-<div class="modal fade" id="addModal">
+
+<!-- 启用禁用模态框 -->
+<div class="modal fade" id="userModal">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
-        <h4 class="modal-title">添加分类</h4>
+        <h4 class="modal-title">温馨提示</h4>
       </div>
       <div class="modal-body">
-        <form id="form">
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="请输入一级分类" name="categoryName">
-          </div>
-        </form>
+        <p class="red"><i class="glyphicon glyphicon-info-sign"></i>你确定要执行此操作吗？</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-        <!-- html5 新增 form 属性, 可以让表单外的按钮, 与表单关联起来(就相当于是写在了表单里面)-->
-        <button type="submit" class="btn btn-primary" form="form">添加</button>
+        <button type="button" class="btn btn-primary" id="submitBtn">确定</button>
       </div>
     </div>
   </div>
 </div>
-
 
 
 <!-- 登录退出的模态框,  配置 data-dismiss="modal" 可以关闭模态框 -->
@@ -126,13 +120,20 @@
   </div>
 </div>
 
-
-<script type="text/html" id="userTpl">
+<script type="text/html" id="tpl">
   {{ each rows v i }}
     <tr>
-      <!-- 前面有多少页*一页多少条 + (i+1) -->
       <td>{{ (page-1)*size + i+1 }}</td>
-      <td>{{ v.categoryName }}</td>
+      <td>{{ v.username }}</td>
+      <td>{{ v.mobile }}</td>
+      <td>{{ v.isDelete === 1 ? "正常" : "禁用" }}</td>
+      <td data-id="{{ v.id }}">
+        {{ if v.isDelete === 1 }}
+          <button class="btn btn-danger">禁用</button>
+        {{ else }}
+          <button class="btn btn-success">启用</button>
+        {{ /if }}
+      </td>
     </tr>
   {{ /each }}
 </script>
@@ -147,7 +148,7 @@
 <script src="lib/artTemplate/template-web.js"></script>
 <script src="lib/bootstrap-paginator/bootstrap-paginator.min.js"></script>
 <script src="js/common.js"></script>
-<script src="js/first.js"></script>
+<script src="js/user.js"></script>
 
 </body>
 </html>

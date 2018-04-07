@@ -39,8 +39,11 @@ $(function() {
       }
     });
   }
+
+
   
   // 启用禁用功能
+  // 给所有的按钮, 注册委托事件
   $('.main_body tbody').on("click", ".btn", function() {
     // 1 表示用户启用  0 表示用户禁用
     var isDelete = $(this).hasClass("btn-success") ? 1 : 0;
@@ -50,7 +53,7 @@ $(function() {
     $('#userModal').modal();
     
     // 防止重复注册, 可以先解绑再注册
-    $('#submitBtn').off().on("click", function() {
+    $('#submitBtn').off("click").on("click", function() {
       $.ajax({
         type: "post",
         url: "/user/updateUser",
@@ -69,5 +72,5 @@ $(function() {
       })
     })
   });
-  
+
 });
