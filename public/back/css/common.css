@@ -111,7 +111,6 @@ a:active {
 .lt_main {
   height: 1000px;
   width: 100%;
-  background-color: pink;
   padding-left: 180px;
   padding-top: 50px;
   transition: all 1s;
@@ -145,6 +144,13 @@ a:active {
 
 .breadcrumb {
   margin-top: 20px;
+}
+
+
+.echarts_1,
+.echarts_2 {
+  width: 48%;
+  height: 400px;
 }
 
 /* lt_main 结束 */
