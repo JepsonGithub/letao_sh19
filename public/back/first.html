@@ -51,8 +51,32 @@
     <!-- 路径导航 -->
     <ol class="breadcrumb">
       <li><a href="index.html">管理系统</a></li>
-      <li class="active">首页</li>
+      <li class="active">分类管理</li>
+      <li class="active">一级分类</li>
     </ol>
+
+    <div class="lt_content">
+
+      <button class="btn btn-default mb_20">添加分类</button>
+
+      <table class="table table-bordered table-hover">
+        <thead>
+        <tr>
+          <th width="20%">序号</th>
+          <th width="80%">一级分类名</th>
+        </tr>
+        </thead>
+        <tbody>
+          <!-- 刨个大坑 -->
+        </tbody>
+      </table>
+
+      <!-- 分页dom结构 -->
+      <div class="text-right">
+        <ul id="paginator"></ul>
+      </div>
+
+    </div>
 
   </div>
 </div>
@@ -79,13 +103,27 @@
 </div>
 
 
+<script type="text/html" id="userTpl">
+  {{ each rows v i }}
+    <tr>
+      <!-- 前面有多少页*一页多少条 + (i+1) -->
+      <td>{{ (page-1)*size + i+1 }}</td>
+      <td>{{ v.categoryName }}</td>
+    </tr>
+  {{ /each }}
+</script>
+
+
 
 
 <script src="lib/jquery/jquery.min.js"></script>
 <script src="lib/bootstrap/js/bootstrap.min.js"></script>
 <script src="lib/bootstrap-validator/js/bootstrapValidator.min.js"></script>
 <script src="lib/nprogress/nprogress.js"></script>
+<script src="lib/artTemplate/template-web.js"></script>
+<script src="lib/bootstrap-paginator/bootstrap-paginator.min.js"></script>
 <script src="js/common.js"></script>
+<script src="js/first.js"></script>
 
 </body>
 </html>
