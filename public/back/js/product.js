@@ -300,7 +300,7 @@ $(function() {
 
           // 删除结构中的所有图片
           $('#imgBox img').remove();
-          // 重置数组 picArrr
+          // 重置数组 picArr
           picArr = [];
 
         }
