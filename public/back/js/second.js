@@ -68,6 +68,7 @@ $(function() {
   $('.dropdown-menu').on("click", "a", function() {
     // 选中的文本
     var txt = $(this).text();
+    // 拿到 categoryId
     var id = $(this).data("id");
 
     // 修改文本内容
