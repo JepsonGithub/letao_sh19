@@ -1,40 +1,38 @@
 /**
- * Created by Jepson on 2018/4/3.
+ * Created by Jepson on 2018/4/11.
  */
-$(function () {
-  
-  //需要发送ajax请求，获取到用户的信息
+
+$(function() {
+
+
+  // 一进入页面, 请求用户信息, 进行用户信息渲染
   $.ajax({
-    type:"get",
-    url:"/user/queryUserMessage",
-    success:function (data) {
-      
-      if(data.error=== 400){
+    url: "/user/queryUserMessage",
+    type: "get",
+    success: function( info ) {
+      if ( info.error ) {
         location.href = "login.html";
+        return;
       }
-      
-      //直接渲染用户信息
-      console.log(data);
-      $(".userinfo").html( template("tpl", data) );
-      
-      
+
+      console.log(info);
+      $('#userinfo').html( template( "userTpl", info ) )
     }
-  });
-  
-  
-  
-  //退出功能
-  $(".btn_logout").on("click", function () {
-    
+  })
+
+
+  // 退出功能
+  $('#btn_logout').click(function() {
     $.ajax({
-      type:"get",
-      url:"/user/logout",
-      success:function (data) {
-        if(data.success) {
+      url: "/user/logout",
+      type: "get",
+      success: function( info ) {
+        console.log(info);
+        if ( info.success ) {
           location.href = "login.html";
         }
       }
-    });
-    
+    })
   })
-});
+
+})

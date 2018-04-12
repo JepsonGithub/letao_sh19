@@ -12,7 +12,6 @@ $(function() {
   // 功能1: 根据 key, 进行ajax请求, 一进入页面就进行页面渲染
   render();
 
-
   // 功能2: 点击搜索按钮, 实现搜索功能
   $('.lt_search button').click(function() {
 

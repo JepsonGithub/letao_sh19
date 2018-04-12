@@ -404,7 +404,9 @@ a:active
     overflow: hidden;
 
     white-space: normal !important;
+    /* 文本溢出显示 省略号 */
     text-overflow: ellipsis;
+
     word-wrap: break-word;
 
     -webkit-line-clamp: 2;
@@ -736,7 +738,7 @@ p
     z-index: 1;
 
     width: 100%;
-
+    /* 手机端, 默认是不会开启 gpu(显卡) 渲染, c3中 3d属性是可以强制触发 gpu 渲染 */
     -webkit-transform: translateZ(0);
             transform: translateZ(0);
 }

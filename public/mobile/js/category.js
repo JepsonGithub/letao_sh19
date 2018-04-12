@@ -1,32 +1,46 @@
 /**
- * Created by Jepson on 2018/4/2.
+ * Created by Jepson on 2018/4/9.
  */
+
+
 $(function() {
-  // 渲染一级分类
+  // 请求左侧一级分类列表数据
   $.ajax({
-    type: "get",
     url: "/category/queryTopCategory",
-    success: function( data ) {
-      console.log(data);
-      $('#ul_left').html( template( "tpl_left", data ) );
-      renderById(data.rows[0].id)
+    type: "GET",
+    success: function( info ) {
+      console.log( info );
+      var htmlStr = template( "left_tpl", info );
+      $('.category_left ul').html( htmlStr );
+
+      // 刚进页面默认渲染第一个
+      renderById( info.rows[0].id );
     }
   });
-  
-  // 左侧的事件委托
-  $('#ul_left').on("click", "li", function() {
-    $(this).addClass("current").siblings().removeClass("current");
-    renderById($(this).data("id"));
-  });
-  
+
+
+  // 给左侧添加事件委托, 点击左侧一级分类, 渲染二级分类
+  $('.category_left ul').on("click", "a", function() {
+    // 拿到一级分类id
+    var id = $(this).data("id");
+    // 重新渲染
+    renderById( id );
+    $(this).addClass("current").parent().siblings().find("a").removeClass("current");
+  })
+
+
+  // 根据 一级分类的 id 渲染二级分类
   function renderById( id ) {
     $.ajax({
-      type: "get",
       url: "/category/querySecondCategory",
-      data: { id : id },
-      success: function( data ) {
-        console.log(data);
-        $('#ul_right').html( template( "tpl_right", data ) );
+      type: "GET",
+      data: {
+        id: id
+      },
+      success: function( info ) {
+        console.log( info )
+        var htmlStr = template( "right_tpl", info );
+        $('.category_right ul').html( htmlStr );
       }
     })
   }
