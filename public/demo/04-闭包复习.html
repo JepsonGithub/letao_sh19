@@ -6,6 +6,8 @@
 </head>
 <body>
 
+<p>呵呵</p>
+
 <script>
 
   // 闭包的概念: 定义在函数内的函数
@@ -24,11 +26,9 @@
 //    return f1;
 //
 //  }
-//
-//
-//
 //  var temp = fn();
 //  temp();
+
 
 //  var fn = (function() {
 //    var num = 123;
@@ -51,13 +51,13 @@
 //    return f1;
 //  }
 //  var temp = fn(); // 第一个计数器 0
-//  temp(); // 0 -> 1
-//  temp(); // 1 -> 2
+//  temp(); // 第一个计数器 0 -> 1
+//  temp(); // 第一个计数器 1 -> 2
 //
 //  var temp2 = fn(); // 第二个计数器 0
 //  temp2(); // 第二个计数器 0 -> 1
 //
-//  console.log(temp === temp2);
+//  console.log(temp === temp2);  // false
 //  temp(); // 第一个计数器 2 -> 3
 //  temp(); // 第一个计数器 3 -> 4
 //
@@ -101,6 +101,7 @@
 //    }
 
 
+  // 闭包 2
 //    for( var i = 1; i < 10; i++ ) {
 //
 //      var fn = (function( num ) {
@@ -120,10 +121,10 @@
 //      }
 //    }
 //    var temp = fn( 1 );
-//    temp();
+//    temp(); // 1
 //
-//    var temp2 = fn(2)
-//    temp2();
+//    var temp2 = fn( 2 )
+//    temp2(); // 2
 
 
   // setTimeout( fn, 毫秒数, 需要传递给fn的参数 )
@@ -133,7 +134,7 @@
     }, 1000, i );
   }
 
-
+//  alert("呵呵");
 
 </script>
 
